@@ -33,7 +33,8 @@ function createServer() {
     res.setHeader('Content-Type', 'application/json');
 
     if (errors.length > 0) {
-      res.statusCode = 404;
+      res.statusCode = 400;
+      res.statusMessage = 'Bad request';
       res.end(JSON.stringify({ errors }));
 
       return;
@@ -48,6 +49,7 @@ function createServer() {
     };
 
     res.statusCode = 200;
+    res.statusMessage = 'OK';
     res.end(JSON.stringify(fullResponse));
   });
 
